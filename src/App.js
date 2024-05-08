@@ -1,5 +1,11 @@
+import Router from "./router";
+
 function App() {
-  return <div className="App text-3xl text-red-500">Learn with KB</div>;
+  return (
+    <div className="App">
+      <Router />
+    </div>
+  );
 }
 
 export default App;
