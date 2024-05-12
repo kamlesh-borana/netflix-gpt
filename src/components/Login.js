@@ -9,6 +9,7 @@ import {
 import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../redux/userSlice";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -19,6 +20,7 @@ const Login = () => {
   const fullNameRef = useRef(null);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const toggleForm = () => {
     setIsSignInForm(!isSignInForm);
@@ -46,6 +48,7 @@ const Login = () => {
             avatar: user?.photoURL,
           })
         );
+        navigate("/browse");
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -83,6 +86,7 @@ const Login = () => {
                 avatar: user?.photoURL,
               })
             );
+            navigate("/browse");
           })
           .catch((error) => {
             // An error occurred
