@@ -1,7 +1,26 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { signOut } from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { removeUser } from "../redux/userSlice";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        dispatch(removeUser());
+        navigate("/");
+      })
+      .catch((error) => {
+        // An error happened.
+        console.log("error: ", error);
+      });
+  };
 
   return (
     <div className="w-full absolute z-10 top-0 flex justify-between">
@@ -16,6 +35,12 @@ const Header = () => {
         <div className="flex items-center">
           <img className="w-10 h-10 mr-4" src={user.avatar} alt="User Avatar" />
           <span className="mr-4">{user.name}</span>
+          <button
+            className="mr-4 bg-black text-white text-sm py-1 px-2 rounded-lg"
+            onClick={handleSignOut}
+          >
+            Sign Out
+          </button>
         </div>
       )}
     </div>
