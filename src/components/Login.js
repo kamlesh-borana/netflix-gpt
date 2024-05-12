@@ -4,6 +4,7 @@ import { validateSignInDetails, validateSignUpDetails } from "../utils";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
@@ -68,6 +69,12 @@ const Login = () => {
         // Signed up
         const user = userCredential.user;
         console.log("user -=> ", user);
+        updateProfile(user, {
+          displayName: fullName,
+          photoURL: "https://avatars.githubusercontent.com/u/111940294?v=4",
+        })
+          .then(() => {
+            // Profile updated!
             dispatch(
               addUser({
                 id: user?.uid,
@@ -76,6 +83,11 @@ const Login = () => {
                 avatar: user?.photoURL,
               })
             );
+          })
+          .catch((error) => {
+            // An error occurred
+            setError(error?.message);
+          });
       })
       .catch((error) => {
         const errorCode = error.code;
