@@ -6,6 +6,8 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
+import { useDispatch } from "react-redux";
+import { addUser } from "../redux/userSlice";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -14,6 +16,8 @@ const Login = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const fullNameRef = useRef(null);
+
+  const dispatch = useDispatch();
 
   const toggleForm = () => {
     setIsSignInForm(!isSignInForm);
@@ -33,6 +37,14 @@ const Login = () => {
         // Signed in
         const user = userCredential.user;
         console.log("user -=> ", user);
+        dispatch(
+          addUser({
+            id: user?.uid,
+            name: user?.displayName,
+            email: user?.email,
+            avatar: user?.photoURL,
+          })
+        );
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -56,6 +68,14 @@ const Login = () => {
         // Signed up
         const user = userCredential.user;
         console.log("user -=> ", user);
+            dispatch(
+              addUser({
+                id: user?.uid,
+                name: user?.displayName,
+                email: user?.email,
+                avatar: user?.photoURL,
+              })
+            );
       })
       .catch((error) => {
         const errorCode = error.code;
