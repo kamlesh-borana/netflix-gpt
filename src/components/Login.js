@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Header from "./Header";
 import { validateSignInDetails, validateSignUpDetails } from "../utils";
 import {
@@ -21,6 +21,13 @@ const Login = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const user = auth.currentUser;
+    if (user) {
+      navigate("/browse");
+    }
+  }, []);
 
   const toggleForm = () => {
     setIsSignInForm(!isSignInForm);
