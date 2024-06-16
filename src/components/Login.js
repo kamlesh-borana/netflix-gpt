@@ -7,7 +7,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../redux/userSlice";
 import { useNavigate } from "react-router-dom";
 import { BANNER_IMG_URL, DEFAULT_USER_AVATAR_URL } from "../config";
@@ -23,12 +23,14 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const user = useSelector((store) => store.user);
+
   useEffect(() => {
-    const user = auth.currentUser;
+    //   const user = auth.currentUser;
     if (user) {
       navigate("/browse");
     }
-  }, []);
+  }, [user]);
 
   const toggleForm = () => {
     setIsSignInForm(!isSignInForm);
@@ -48,14 +50,14 @@ const Login = () => {
         // Signed in
         const user = userCredential.user;
         console.log("user -=> ", user);
-        dispatch(
-          addUser({
-            id: user?.uid,
-            name: user?.displayName,
-            email: user?.email,
-            avatar: user?.photoURL,
-          })
-        );
+        // dispatch(
+        //   addUser({
+        //     id: user?.uid,
+        //     name: user?.displayName,
+        //     email: user?.email,
+        //     avatar: user?.photoURL,
+        //   })
+        // );
         navigate("/browse");
       })
       .catch((error) => {
@@ -86,6 +88,7 @@ const Login = () => {
         })
           .then(() => {
             // Profile updated!
+            console.log("user -=> ", user);
             dispatch(
               addUser({
                 id: user?.uid,
