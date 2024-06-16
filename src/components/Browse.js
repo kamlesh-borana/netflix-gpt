@@ -3,6 +3,7 @@ import { auth } from "../utils/firebase";
 import Header from "./Header";
 import { useEffect } from "react";
 import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
+import HeroBanner from "./HeroBanner";
 import { useSelector } from "react-redux";
 
 const Browse = () => {
@@ -25,7 +26,16 @@ const Browse = () => {
   return (
     <div>
       <Header />
-      Browse
+      {/*
+        Hero Banner
+          - Trailer Video Background
+          - Trailer Video Info
+
+        Movie Suggestion
+          - Movies List * N
+            - Movie Card * N
+       */}
+      <HeroBanner />
     </div>
   );
 };
