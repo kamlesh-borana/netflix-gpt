@@ -27,10 +27,14 @@ const Login = () => {
 
   useEffect(() => {
     //   const user = auth.currentUser;
-    if (user) {
+    if (user?.isLoggedIn) {
       navigate("/browse");
     }
   }, [user]);
+
+  if (!user || user?.isLoggedIn) {
+    return <h1>Loading...</h1>;
+  }
 
   const toggleForm = () => {
     setIsSignInForm(!isSignInForm);

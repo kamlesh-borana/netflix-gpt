@@ -7,17 +7,20 @@ import { useSelector } from "react-redux";
 
 const Browse = () => {
   const navigate = useNavigate();
+  const user = useSelector((store) => store.user);
 
   useNowPlayingMovies();
 
-  const user = useSelector((store) => store.user);
-
   useEffect(() => {
     // const user = auth.currentUser;
-    if (!user) {
+    if (user && !user?.isLoggedIn) {
       navigate("/");
     }
   }, [user]);
+
+  if (!user?.isLoggedIn) {
+    return <h1>Loading...</h1>;
+  }
 
   return (
     <div>

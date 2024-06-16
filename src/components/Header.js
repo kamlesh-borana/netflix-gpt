@@ -5,9 +5,11 @@ import { removeUser } from "../redux/userSlice";
 import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const user = useSelector((state) => state.user);
+  const { avatar, name } = user?.userDetail || {};
 
   const handleSignOut = () => {
     signOut(auth)
@@ -31,10 +33,10 @@ const Header = () => {
           </g>
         </svg>
       </div>
-      {user && (
+      {user?.isLoggedIn && (
         <div className="flex items-center">
-          <img className="w-10 h-10 mr-4" src={user.avatar} alt="User Avatar" />
-          <span className="mr-4">{user.name}</span>
+          <img className="w-10 h-10 mr-4" src={avatar} alt="User Avatar" />
+          <span className="mr-4">{name}</span>
           <button
             className="mr-4 bg-black text-white text-sm py-1 px-2 rounded-lg"
             onClick={handleSignOut}

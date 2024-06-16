@@ -5,7 +5,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { addUser } from "../redux/userSlice";
+import { addUser, removeUser } from "../redux/userSlice";
 
 const Router = () => {
   const dispatch = useDispatch();
@@ -21,6 +21,9 @@ const Router = () => {
             avatar: user?.photoURL,
           })
         );
+      } else {
+        // User is logged in
+        dispatch(removeUser());
       }
     });
   }, []);
