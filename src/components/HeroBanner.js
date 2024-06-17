@@ -11,16 +11,19 @@ const HeroBanner = () => {
 
   return (
     <>
-      <div className="w-full bg-black bg-opacity-50">
-        <iframe
-          className="relative top-0 left-0 -z-10 aspect-video"
-          width="100%"
-          // height="100%"
-          src={`https://www.youtube.com/embed/${trailerVideo?.key}?autoplay=1&mute=1&controls=0&playlist=${trailerVideo?.key}&loop=1&disablekb=1`}
-          title="YouTube video player"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-        ></iframe>
+      <div className="w-full">
+        <div className="relative">
+          <iframe
+            className="aspect-video"
+            width="100%"
+            // height="100%"
+            src={`https://www.youtube.com/embed/${trailerVideo?.key}?autoplay=1&mute=1&controls=0&playlist=${trailerVideo?.key}&loop=1&disablekb=1`}
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+          ></iframe>
+          <div className="absolute w-full h-full top-0 left-0 bg-black bg-opacity-50 z-10"></div>
+        </div>
         <div className="text-white w-4/12 ml-24 absolute z-10 top-1/2">
           <h2 className="text-4xl font-bold">{title}</h2>
           <p className="mt-4 text-sm">{overview}</p>

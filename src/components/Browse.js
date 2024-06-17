@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
 import HeroBanner from "./HeroBanner";
 import { useSelector } from "react-redux";
+import MovieSuggestion from "./MovieSuggestion";
 
 const Browse = () => {
   const navigate = useNavigate();
@@ -36,6 +37,7 @@ const Browse = () => {
             - Movie Card * N
        */}
       <HeroBanner />
+      <MovieSuggestion />
     </div>
   );
 };

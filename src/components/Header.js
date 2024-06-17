@@ -25,7 +25,7 @@ const Header = () => {
   };
 
   return (
-    <div className="w-full absolute z-10 top-0 flex justify-between">
+    <div className="w-full absolute z-10 top-0 flex justify-between z-50">
       <div className="w-32 m-8">
         <svg viewBox="0 0 111 30" className="fill-red-600">
           <g>

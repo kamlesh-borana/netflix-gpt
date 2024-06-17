@@ -18,3 +18,5 @@ export const NOW_PLAYING_MOVIES_API_URL =
 
 export const BANNER_TRAILER_VIDEO_API_URL = (id) =>
   `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`;
+
+export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w500";
