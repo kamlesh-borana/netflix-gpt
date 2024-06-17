@@ -36,9 +36,9 @@ const Header = () => {
       {user?.isLoggedIn && (
         <div className="flex items-center">
           <img className="w-10 h-10 mr-4" src={avatar} alt="User Avatar" />
-          <span className="mr-4">{name}</span>
+          <span className="mr-4 text-white">{name}</span>
           <button
-            className="mr-4 bg-black text-white text-sm py-1 px-2 rounded-lg"
+            className="mr-4 bg-white text-black text-sm py-1 px-2 rounded-lg"
             onClick={handleSignOut}
           >
             Sign Out
