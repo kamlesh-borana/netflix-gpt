@@ -6,12 +6,18 @@ import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
 import HeroBanner from "./HeroBanner";
 import { useSelector } from "react-redux";
 import MovieSuggestion from "./MovieSuggestion";
+import usePopularMovies from "../hooks/usePopularMovies";
+import useTopRatedMovies from "../hooks/useTopRatedMovies";
+import useUpcomingMovies from "../hooks/useUpcomingMovies";
 
 const Browse = () => {
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
 
   useNowPlayingMovies();
+  usePopularMovies();
+  useTopRatedMovies();
+  useUpcomingMovies();
 
   useEffect(() => {
     // const user = auth.currentUser;

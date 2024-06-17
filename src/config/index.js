@@ -16,6 +16,15 @@ export const GET_API_OPTIONS = {
 export const NOW_PLAYING_MOVIES_API_URL =
   "https://api.themoviedb.org/3/movie/now_playing?page=1";
 
+export const POPULAR_MOVIES_API_URL =
+  "https://api.themoviedb.org/3/movie/popular?page=1";
+
+export const TOP_RATED_MOVIES_API_URL =
+  "https://api.themoviedb.org/3/movie/top_rated?page=1";
+
+export const UPCOMING_MOVIES_API_URL =
+  "https://api.themoviedb.org/3/movie/upcoming?page=1";
+
 export const BANNER_TRAILER_VIDEO_API_URL = (id) =>
   `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`;
 
