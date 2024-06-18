@@ -3,6 +3,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { removeUser } from "../redux/userSlice";
 import { useNavigate } from "react-router-dom";
+import { toggleGPTSearch } from "../redux/gptSearchSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -10,6 +11,8 @@ const Header = () => {
 
   const user = useSelector((state) => state.user);
   const { avatar, name } = user?.userDetail || {};
+
+  const { showGPTSearch } = useSelector((store) => store.gptSearch);
 
   const handleSignOut = () => {
     signOut(auth)
@@ -24,6 +27,10 @@ const Header = () => {
       });
   };
 
+  const handleGPTSearch = () => {
+    dispatch(toggleGPTSearch());
+  };
+
   return (
     <div className="w-full absolute z-10 top-0 flex justify-between z-50">
       <div className="w-32 m-8">
@@ -35,6 +42,12 @@ const Header = () => {
       </div>
       {user?.isLoggedIn && (
         <div className="flex items-center">
+          <button
+            className="mr-4 bg-purple-700 text-white text-sm py-1 px-2 rounded-lg"
+            onClick={handleGPTSearch}
+          >
+            {showGPTSearch ? "Home Page" : "GPT Search"}
+          </button>
           <img className="w-10 h-10 mr-4" src={avatar} alt="User Avatar" />
           <span className="mr-4 text-white">{name}</span>
           <button

@@ -9,10 +9,12 @@ import MovieSuggestion from "./MovieSuggestion";
 import usePopularMovies from "../hooks/usePopularMovies";
 import useTopRatedMovies from "../hooks/useTopRatedMovies";
 import useUpcomingMovies from "../hooks/useUpcomingMovies";
+import GPTSearch from "./GPTSearch";
 
 const Browse = () => {
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
+  const { showGPTSearch } = useSelector((store) => store.gptSearch);
 
   useNowPlayingMovies();
   usePopularMovies();
@@ -33,17 +35,23 @@ const Browse = () => {
   return (
     <div>
       <Header />
-      {/*
-        Hero Banner
-          - Trailer Video Background
-          - Trailer Video Info
-
-        Movie Suggestion
-          - Movies List * N
-            - Movie Card * N
-       */}
-      <HeroBanner />
-      <MovieSuggestion />
+      {showGPTSearch ? (
+        <GPTSearch />
+      ) : (
+        <>
+          {/*
+          Hero Banner
+            - Trailer Video Background
+            - Trailer Video Info
+  
+          Movie Suggestion
+            - Movies List * N
+              - Movie Card * N
+         */}
+          <HeroBanner />
+          <MovieSuggestion />
+        </>
+      )}
     </div>
   );
 };
