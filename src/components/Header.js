@@ -4,6 +4,8 @@ import { auth } from "../utils/firebase";
 import { removeUser } from "../redux/userSlice";
 import { useNavigate } from "react-router-dom";
 import { toggleGPTSearch } from "../redux/gptSearchSlice";
+import { updateLanguage } from "../redux/configSlice";
+import { ACCEPTED_LANGUAGE } from "../config";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -31,6 +33,10 @@ const Header = () => {
     dispatch(toggleGPTSearch());
   };
 
+  const handleLanguage = (lang) => {
+    dispatch(updateLanguage(lang));
+  };
+
   return (
     <div className="w-full absolute z-10 top-0 flex justify-between z-50">
       <div className="w-32 m-8">
@@ -42,6 +48,20 @@ const Header = () => {
       </div>
       {user?.isLoggedIn && (
         <div className="flex items-center">
+          {showGPTSearch && (
+            <select
+              className="mr-4 bg-black text-white px-2 py-1 rounded-lg bg-opacity-80"
+              onChange={(e) => {
+                handleLanguage(e.target.value);
+              }}
+            >
+              {ACCEPTED_LANGUAGE?.map((language) => (
+                <option key={language.code} value={language.code}>
+                  {language.name}
+                </option>
+              ))}
+            </select>
+          )}
           <button
             className="mr-4 bg-purple-700 text-white text-sm py-1 px-2 rounded-lg"
             onClick={handleGPTSearch}
