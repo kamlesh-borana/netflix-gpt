@@ -28,6 +28,9 @@ export const UPCOMING_MOVIES_API_URL =
 export const BANNER_TRAILER_VIDEO_API_URL = (id) =>
   `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`;
 
+export const SEARCH_MOVIE_API_URL = (movieName, includeAdult) =>
+  `https://api.themoviedb.org/3/search/movie?query=${movieName}&include_adult=${includeAdult}`;
+
 export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w500";
 
 export const ACCEPTED_LANGUAGE = [
