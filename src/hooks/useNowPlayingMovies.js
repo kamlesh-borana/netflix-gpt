@@ -2,10 +2,7 @@ import { useEffect } from "react";
 import { auth } from "../utils/firebase";
 import { GET_API_OPTIONS, NOW_PLAYING_MOVIES_API_URL } from "../config";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addBannerTrailerVideo,
-  addNowPlayingMovies,
-} from "../redux/moviesSlice";
+import { addBannerMovie, addNowPlayingMovies } from "../redux/moviesSlice";
 
 const useNowPlayingMovies = () => {
   const user = useSelector((store) => store.user);
@@ -18,7 +15,7 @@ const useNowPlayingMovies = () => {
         .then((response) => {
           console.log(response.results);
           dispatch(addNowPlayingMovies(response.results));
-          dispatch(addBannerTrailerVideo(response.results?.[0]));
+          dispatch(addBannerMovie(response.results?.[0]));
         })
         .catch((err) => console.error(err));
     }

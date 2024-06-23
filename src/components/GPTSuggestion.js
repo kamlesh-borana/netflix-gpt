@@ -12,27 +12,31 @@ const GPTSuggestion = () => {
   );
 
   useEffect(() => {
-    const suggestedMoviesPromises = gptSuggestedMovieNames?.map((movieName) => {
-      return fetch(SEARCH_MOVIE_API_URL(movieName, false), GET_API_OPTIONS)
-        .then((response) => response.json())
-        .then((response) => {
-          console.log(response.results);
-          //   if (response.results?.length === 1) {
-          //     console.log(response.results[0]);
-          //     return response.results[0];
-          //   } else {
-          //     const searchedMovie = response.results?.filter(
-          //       (movie) => movie?.title === movieName
-          //     )[0];
-          //     console.log(searchedMovie);
-          //     return searchedMovie;
-          //   }
-          return response.results;
-        });
-    });
-    Promise.all(suggestedMoviesPromises).then((suggestedMovies) => {
-      dispatch(addGPTMovieSuggestions(suggestedMovies));
-    });
+    if (!gptMovieSuggestions) {
+      const suggestedMoviesPromises = gptSuggestedMovieNames?.map(
+        (movieName) => {
+          return fetch(SEARCH_MOVIE_API_URL(movieName, false), GET_API_OPTIONS)
+            .then((response) => response.json())
+            .then((response) => {
+              console.log(response.results);
+              //   if (response.results?.length === 1) {
+              //     console.log(response.results[0]);
+              //     return response.results[0];
+              //   } else {
+              //     const searchedMovie = response.results?.filter(
+              //       (movie) => movie?.title === movieName
+              //     )[0];
+              //     console.log(searchedMovie);
+              //     return searchedMovie;
+              //   }
+              return response.results;
+            });
+        }
+      );
+      Promise.all(suggestedMoviesPromises).then((suggestedMovies) => {
+        dispatch(addGPTMovieSuggestions(suggestedMovies));
+      });
+    }
   }, []);
 
   return (

@@ -4,10 +4,8 @@ import { useSelector } from "react-redux";
 
 const HeroBanner = () => {
   const trailerVideo = useTrailerVideo();
-  const bannerTrailerVideo = useSelector(
-    (store) => store.movies.bannerTrailerVideo
-  );
-  const { title, overview } = bannerTrailerVideo || {};
+  const bannerMovie = useSelector((store) => store.movies.bannerMovie);
+  const { title, overview } = bannerMovie || {};
 
   return (
     <>
