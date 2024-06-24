@@ -3,7 +3,7 @@ import { IMG_CDN_URL } from "../config";
 
 const MovieCard = ({ movie }) => {
   return movie?.poster_path ? (
-    <div className="w-28 flex-shrink-0">
+    <div className="w-24 md:w-28 flex-shrink-0">
       <img alt="Movie Card" src={`${IMG_CDN_URL}${movie?.poster_path}`} />
     </div>
   ) : null;

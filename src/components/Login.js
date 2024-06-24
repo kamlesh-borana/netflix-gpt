@@ -124,57 +124,60 @@ const Login = () => {
   };
 
   return (
-    <div className="relative flex justify-center items-center bg-black bg-opacity-60">
+    <div className="w-full">
       <Header />
-      <div className="">
+      <div className="relative h-screen w-full">
         <img
           src={BANNER_IMG_URL}
-          className="relative -z-10"
+          className="fixed -z-10 h-full w-full object-cover"
           alt="wall of movie and shows on netflix"
         />
+        <div className="bg-black bg-opacity-60 absolute w-full h-full"></div>
       </div>
 
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
-        className="w-4/12 bg-black text-white py-8 px-16 absolute opacity-85"
-      >
-        <h1 className="font-bold text-3xl pb-8">
-          {isSignInForm ? "Sign In" : "Sign Up"}
-        </h1>
-        {!isSignInForm ? (
+      <div className="w-full flex justify-center">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+          className="w-full md:w-1/2 lg:w-1/3 bg-black text-white py-8 px-16 absolute top-[20%] md:top-[25%] opacity-80"
+        >
+          <h1 className="font-bold text-3xl pb-8">
+            {isSignInForm ? "Sign In" : "Sign Up"}
+          </h1>
+          {!isSignInForm ? (
+            <input
+              ref={fullNameRef}
+              placeholder="Full Name"
+              className="w-full mb-4 p-2 bg-gray-600"
+            />
+          ) : null}
           <input
-            ref={fullNameRef}
-            placeholder="Full Name"
+            ref={emailRef}
+            placeholder="Email"
             className="w-full mb-4 p-2 bg-gray-600"
           />
-        ) : null}
-        <input
-          ref={emailRef}
-          placeholder="Email"
-          className="w-full mb-4 p-2 bg-gray-600"
-        />
-        <input
-          ref={passwordRef}
-          placeholder="Password"
-          type="password"
-          className="w-full mb-4 p-2 bg-gray-600"
-        />
-        <p className="text-sm text-red-600 mb-4">{error}</p>
-        <button
-          className="bg-red-600 w-full py-2 rounded-lg disabled:pointer-events-none"
-          onClick={handleClick}
-        >
-          {isSignInForm ? "Sign In" : "Sign Up"}
-        </button>
+          <input
+            ref={passwordRef}
+            placeholder="Password"
+            type="password"
+            className="w-full mb-4 p-2 bg-gray-600"
+          />
+          <p className="text-sm text-red-600 mb-4">{error}</p>
+          <button
+            className="bg-red-600 w-full py-2 rounded-lg disabled:pointer-events-none"
+            onClick={handleClick}
+          >
+            {isSignInForm ? "Sign In" : "Sign Up"}
+          </button>
 
-        <h2 className="mt-8 cursor-pointer" onClick={toggleForm}>
-          {isSignInForm
-            ? "New to Netflix? Sign up now."
-            : "Already a user? Sign in now."}
-        </h2>
-      </form>
+          <h2 className="mt-8 cursor-pointer" onClick={toggleForm}>
+            {isSignInForm
+              ? "New to Netflix? Sign up now."
+              : "Already a user? Sign in now."}
+          </h2>
+        </form>
+      </div>
     </div>
   );
 };

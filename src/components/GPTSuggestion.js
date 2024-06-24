@@ -40,8 +40,8 @@ const GPTSuggestion = () => {
   }, []);
 
   return (
-    <div className="bg-black text-white bg-opacity-80 mt-16 w-full px-8 pb-8 pt-6">
-      <h2 className="text-2xl mb-2">GPT Suggested Movie Names</h2>
+    <div className="bg-black text-white bg-opacity-70 mt-16 w-full pl-6 md:pl-8 pb-6 md:pb-8 pt-6">
+      <h2 className="text-xl md:text-2xl mb-2">GPT Suggested Movie Names</h2>
       {gptSuggestedMovieNames?.map((movieName, index) => {
         return (
           <div key={index} className="">

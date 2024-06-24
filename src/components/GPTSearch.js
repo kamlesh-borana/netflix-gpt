@@ -84,16 +84,19 @@ const GPTSearch = () => {
   };
 
   return (
-    <div className="relative flex justify-center">
-      <img
-        src={BANNER_IMG_URL}
-        className="relative -z-10"
-        alt="wall of movie and shows on netflix"
-      />
+    <>
+      <div className="fixed flex justify-center h-screen w-full">
+        <img
+          src={BANNER_IMG_URL}
+          className="relative -z-10 h-full w-full object-cover"
+          alt="wall of movie and shows on netflix"
+        />
+        <div className="bg-black bg-opacity-60 absolute w-full h-full"></div>
+      </div>
 
-      <div className="w-full absolute top-[20%] flex flex-col items-center">
+      <div className="w-full absolute top-[30%] md:top-[25%] flex flex-col items-center">
         <form
-          className="w-4/12 bg-black text-white p-4 grid grid-cols-12 gap-2"
+          className="w-full md:w-1/2 lg:w-1/3 bg-black text-white p-4 grid grid-cols-12 gap-2"
           onSubmit={(e) => {
             e.preventDefault();
           }}
@@ -113,7 +116,7 @@ const GPTSearch = () => {
 
         {gptSuggestedMovieNames && <GPTSuggestion />}
       </div>
-    </div>
+    </>
   );
 };
 
